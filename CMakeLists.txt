@@ -1,3 +1,4 @@
+#THIS FILE IS AUTO GENERATED FROM THE TEMPLATE! DO NOT CHANGE!
 SET(CMAKE_SYSTEM_NAME Generic)
 SET(CMAKE_SYSTEM_VERSION 1)
 cmake_minimum_required(VERSION 3.7)
@@ -6,6 +7,11 @@ cmake_minimum_required(VERSION 3.7)
 SET(CMAKE_C_COMPILER_WORKS 1)
 SET(CMAKE_C_COMPILER arm-none-eabi-gcc)
 SET(CMAKE_CXX_COMPILER arm-none-eabi-g++)
+set(AS arm-none-eabi-as)
+set(AR arm-none-eabi-ar)
+set(OBJCOPY arm-none-eabi-objcopy)
+set(OBJDUMP arm-none-eabi-objdump)
+set(SIZE arm-none-eabi-size)
 
 
 SET(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F407VGTx_FLASH.ld)
@@ -27,11 +33,11 @@ PROJECT(f4-blog C ASM)
 set(CMAKE_CXX_STANDARD 11)
 
 #add_definitions(-DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1 )
-add_definitions(-D__weak=__attribute__\(\(weak\)\) -D__packed=__attribute__\(\(__packed__\)\) -DUSE_HAL_DRIVER -DSTM32F407xx )
+add_definitions(-DUSE_HAL_DRIVER -DSTM32F407xx -D__weak=__attribute__\(\(weak\)\) -D__packed=__attribute__\(\(__packed__\)\) )
 
 file(GLOB_RECURSE SOURCES "startup/*.*" "Drivers/*.*" "Src/*.*" "Inc/*.*")
 
-include_directories(Inc Drivers/STM32F4xx_HAL_Driver/Inc Drivers/STM32F4xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32F4xx/Include Drivers/CMSIS/Include)
+include_directories(Inc Drivers/STM32F4xx_HAL_Driver/Inc Drivers/STM32F4xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32F4xx/Include Drivers/CMSIS/Include Inc)
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
 
